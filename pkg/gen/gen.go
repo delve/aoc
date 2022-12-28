@@ -352,6 +352,20 @@ func RemovePuzzleInput(year, day int) {
 	NewBenchmarks(year)
 }
 
+func RemovePuzzleSample(year, day int) {
+	fileName := puzzleSampleFileName(year, day)
+	err := os.Remove(fileName)
+	if err != nil {
+		logrus.Error(err)
+		return
+	}
+	logrus.Info(fmt.Sprintf("File deleted: %s", fileName))
+
+	InitializeYearsPackages()
+	InitializePackage(year)
+	NewBenchmarks(year)
+}
+
 // FormatDay zero pads single-digit days
 func FormatDay(year int) string {
 	yearStr := strconv.Itoa(year)

@@ -156,6 +156,7 @@ var rmCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		gen.RemovePuzzle(year, day)
 		gen.RemovePuzzleInput(year, day)
+		gen.RemovePuzzleSample(year, day)
 	},
 }
 
