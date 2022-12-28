@@ -1,13 +1,16 @@
 package gen
 
 import (
+	"aocgen/pkg/common"
 	"errors"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"regexp"
 	"strconv"
 	"strings"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 
 	"github.com/dolmen-go/codegen"
 	"github.com/sirupsen/logrus"
@@ -173,12 +176,14 @@ func InitializePackage(year int) {
 	puzzles := ""
 
 	newYearPkgDirectory(year)
-	files, err := ioutil.ReadDir(path)
+	entries, err := os.ReadDir(path)
 	if err != nil {
 		logrus.Fatal(err)
 	}
 
-	for _, file := range files {
+	for _, entry := range entries {
+		file, err := entry.Info()
+		common.Check(err)
 		if file.IsDir() {
 			continue
 		}
@@ -187,7 +192,8 @@ func InitializePackage(year int) {
 			continue
 		}
 		day, _ := strconv.Atoi(puzzleName[3:])
-		puzzles += fmt.Sprintf("%d: %s{},\n", day, strings.Title(strings.ToLower(puzzleName)))
+		caser := cases.Title(language.English)
+		puzzles += fmt.Sprintf("%d: %s{},\n", day, caser.String(strings.ToLower(puzzleName)))
 		logrus.Debugf("Found puzzle file for %d-%d", year, day)
 	}
 
@@ -226,12 +232,15 @@ func InitializeYearsPackages() {
 
 	var imports, inits string
 
-	dirs, err := ioutil.ReadDir(path)
+	dirEntries, err := os.ReadDir(path)
 	if err != nil {
 		logrus.Fatal(err)
 	}
 
-	for _, dir := range dirs {
+	for _, entry := range dirEntries {
+		dir, err := entry.Info()
+		common.Check(err)
+
 		if !dir.IsDir() || len(dir.Name()) < 8 || dir.Name()[:4] != "year" {
 			logrus.Infof("Skipping directory for package: %s", dir.Name())
 			continue
@@ -270,12 +279,12 @@ func NewBenchmarks(year int) {
 
 	benchmarks := ""
 
-	files, err := ioutil.ReadDir(path)
-	if err != nil {
-		logrus.Fatal(err)
-	}
+	entries, err := os.ReadDir(path)
+	common.Check(err)
 
-	for _, file := range files {
+	for _, entry := range entries {
+		file, err := entry.Info()
+		common.Check(err)
 		if file.IsDir() {
 			continue
 		}
