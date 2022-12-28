@@ -31,8 +31,12 @@ func Year() int {
 	return year
 }
 
-func Input(year, day int) []string {
-	fileName := fmt.Sprintf("./pkg/year%d/inputs/%d.txt", year, day)
+func Input(year, day int, sample bool) []string {
+	sDay := fmt.Sprintf("%d", day)
+	if sample {
+		sDay = fmt.Sprintf("%s-sample", sDay)
+	}
+	fileName := fmt.Sprintf("./pkg/year%d/inputs/%s.txt", year, sDay)
 	return readFile(fileName)
 }
 

@@ -5,12 +5,14 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"regexp"
 	"sort"
 	"strconv"
 	"strings"
 	"time"
 
 	"aocgen/pkg/aoc"
+	"aocgen/pkg/common"
 	"aocgen/pkg/gen"
 	"aocgen/pkg/years"
 
@@ -19,6 +21,8 @@ import (
 )
 
 var year, day int
+var file string
+var sample bool
 
 var benchCmd = &cobra.Command{
 	Use:   "bench",
@@ -82,6 +86,7 @@ var genCmd = &cobra.Command{
 	},
 	Run: func(cmd *cobra.Command, args []string) {
 		gen.InitializePackage(year)
+		gen.NewSampleFile(year, day)
 		gen.NewInputFile(year, day)
 		gen.NewPuzzleFile(year, day)
 		gen.InitializePackage(year)
@@ -159,6 +164,24 @@ var runCmd = &cobra.Command{
 	Short: "Run a puzzle",
 	Long:  "",
 	Run: func(cmd *cobra.Command, args []string) {
+		if len(file) > 0 {
+			logrus.Infof("debugging file: %s", file)
+			parser := regexp.MustCompile(".*/year([0-9]{4})/day([0-9]{2})")
+			parsedDay := parser.FindAllStringSubmatch(file, -1)
+			if parsedDay == nil {
+				logrus.Fatalf("could not parse %s for year and day", file)
+			}
+			parsed, err := strconv.Atoi(parsedDay[0][1])
+			common.Check(err)
+			year = parsed
+
+			parsed, err = strconv.Atoi(parsedDay[0][2])
+			common.Check(err)
+			day = parsed
+
+			logrus.Infof("Year %d Day %d", year, day)
+		}
+
 		if year <= 0 {
 			logrus.Fatal("invalid year")
 		}
@@ -166,11 +189,15 @@ var runCmd = &cobra.Command{
 		years.RegisterYears()
 
 		if day > 0 {
-			runDay(year, day)
+			runDay(year, day, sample)
 			return
 		}
 
-		runYear(year)
+		if day < 0 {
+			logrus.Fatal("invalid day")
+		}
+
+		runYear(year, sample)
 	},
 }
 
@@ -183,6 +210,8 @@ var rootCmd = &cobra.Command{
 func Execute() {
 	rootCmd.PersistentFlags().IntVarP(&year, "year", "y", 0, "year input")
 	rootCmd.PersistentFlags().IntVarP(&day, "day", "d", 0, "day input")
+	rootCmd.PersistentFlags().StringVarP(&file, "filename", "f", "", "filename to run for vscode debug integration")
+	rootCmd.PersistentFlags().BoolVarP(&sample, "sample", "s", false, "run on sample data when true")
 
 	rootCmd.AddCommand(benchCmd)
 	rootCmd.AddCommand(buildCmd)
@@ -197,15 +226,15 @@ func Execute() {
 	}
 }
 
-func runYear(year int) {
+func runYear(year int, sample bool) {
 	puzzles := aoc.Puzzles(year)
 	for i := 1; i <= len(puzzles); i++ {
-		runDay(year, i)
+		runDay(year, i, sample)
 	}
 }
 
-func runDay(year, day int) {
-	aoc.Run(year, day, aoc.NewPuzzle(year, day), aoc.Input(year, day))
+func runDay(year, day int, sample bool) {
+	aoc.Run(year, day, aoc.NewPuzzle(year, day), aoc.Input(year, day, sample))
 }
 
 func main() {
