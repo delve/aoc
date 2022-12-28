@@ -30,6 +30,8 @@ Run the puzzle through the ```aocgen``` command as well: ```./aocgen run -y <yea
 
 Export the environment variable ```AOC_SESSION``` with your adventofcode.com session cookie value.  Otherwise, you'll need to manually copy the input into your generated input file.
 
+NOTE: This is set in gitpod variables https://gitpod.io/variables and loaded into gitpod automatically.
+
 ### Benchmarking
 
 Again, use ```aocgen``` to run benchmarks for a specific day's puzzle or the entire year:
