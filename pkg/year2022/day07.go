@@ -26,16 +26,17 @@ func (n node) getChild(c string) *node {
 	return nil
 }
 
-func (n node) getChildren() []string {
-	var ret []string = nil
+// unused
+// func (n node) getChildren() []string {
+// 	var ret []string = nil
 
-	if len(n.children) > 0 {
-		for _, child := range n.children {
-			ret = append(ret, child.name)
-		}
-	}
-	return ret
-}
+// 	if len(n.children) > 0 {
+// 		for _, child := range n.children {
+// 			ret = append(ret, child.name)
+// 		}
+// 	}
+// 	return ret
+// }
 
 func (n *node) addChild(c string, s int) {
 	childNode := node{name: c, size: s, parent: n}
