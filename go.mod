@@ -3,6 +3,7 @@ module aocgen
 go 1.19
 
 require (
+	github.com/deckarep/golang-set/v2 v2.1.0
 	github.com/dolmen-go/codegen v1.0.0
 	github.com/sirupsen/logrus v1.8.1
 	github.com/spf13/cobra v1.6.1
