@@ -52,6 +52,7 @@ func parseInput05(lines []string) (cargo, []order) {
 			if passedDivider {
 				// read & store the cargo data
 				for i := len(invertCache) - 1; i >= 0; i-- {
+					// hardcoded 9 here breaks on sample input. CBA to fix it. could count the columns in the divider line instead.
 					for j := 0; j < 9; j++ {
 						// read each column on the line
 						val := strings.TrimSpace(string(invertCache[i][j*4+1]))
