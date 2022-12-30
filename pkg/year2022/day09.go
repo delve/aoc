@@ -18,6 +18,7 @@ type rope struct {
 }
 
 func (r *rope) move(d string, c int) {
+	//lint:ignore SA4006 [this is fine gif]
 	motion := func() {}
 	switch d {
 	case "U":
