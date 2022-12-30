@@ -2,8 +2,10 @@ package year2022
 
 import (
 	"aocgen/pkg/common"
+	"fmt"
 	"math"
 	"regexp"
+	"strings"
 )
 
 // had to compare w/ https://github.com/aarneng/AdventOfCode2022/blob/main/day14/main.go to find an issue. so glad i learned about complex numbers though!!!!!
@@ -196,5 +198,18 @@ func (p Day14) PartB(lines []string) any {
 		}
 	}
 
+	caveImage := printCave(cave, caveFloor, xMin, xMax)
+	fmt.Printf("%s\n", strings.Join(caveImage, "\n"))
 	return grains
+}
+
+func printCave(cave map[complex128]int, yLimit, xMin, xMax float64) []string {
+	rows := make([]string, int(yLimit))
+	for y := 0.0; y < yLimit; y++ {
+		for x := xMin; x <= xMax+2; x++ {
+			r := kindRunes14[cave[complex(x, y)]]
+			rows[int(y)] += string(r)
+		}
+	}
+	return rows
 }
