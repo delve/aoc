@@ -2,8 +2,10 @@ package gen
 
 import (
 	"aocgen/pkg/common"
+	"bytes"
 	"errors"
 	"fmt"
+	"io"
 	"os"
 	"regexp"
 	"strconv"
@@ -151,6 +153,41 @@ func NewPuzzleFile(year, day int) {
 	}); err != nil {
 		logrus.Fatal(err)
 	}
+	// get rid of the annoying flag that i'll have to delete manually anyway
+	//  **because this is the file i have to edit!!**
+	// createa a byte buffer of size filesize
+	f, err := os.OpenFile(fileName, os.O_RDWR|os.O_CREATE, 0666)
+	common.Check(err)
+	defer f.Close()
+	fi, err := f.Stat()
+	common.Check(err)
+	buf := bytes.NewBuffer(make([]byte, 0, fi.Size()))
+
+	// go to the start of the file and copy it into the buffer
+	_, err = f.Seek(0, io.SeekStart)
+	common.Check(err)
+	_, err = io.Copy(buf, f)
+	common.Check(err)
+
+	// advance cursor past the first line, throwing away the read bytes
+	_, err = buf.ReadBytes('\n')
+	if err != nil && err != io.EOF {
+		logrus.Fatal(err)
+	}
+
+	// go back to the start of the file again
+	_, err = f.Seek(0, io.SeekStart)
+	common.Check(err)
+
+	// copy buffer into file, cursor is still after the first line
+	nw, err := io.Copy(f, buf)
+	common.Check(err)
+
+	// truncate at length of buffer written (original size - first line bytes) and sync to FS
+	err = f.Truncate(nw)
+	common.Check(err)
+	err = f.Sync()
+	common.Check(err)
 
 	logrus.Infof("Created file: %s", fileName)
 }
