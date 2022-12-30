@@ -20,3 +20,10 @@ func Atoi(s string) int {
 	Check(err)
 	return ret
 }
+
+// MustFloat trims space from its input string and converts it to float64. or dies trying.
+func MustFloat(s string) float64 {
+	ret, err := strconv.ParseFloat(strings.TrimSpace(s), 64)
+	Check(err)
+	return ret
+}
