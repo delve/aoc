@@ -20,12 +20,12 @@ const (
 	kind15Coverage
 )
 
-var kind15Runes = map[int]rune{
-	kind15Empty:    '.',
-	kind15Sensor:   'S',
-	kind15Beacon:   'B',
-	kind15Coverage: '#',
-}
+// var kind15Runes = map[int]rune{
+// 	kind15Empty:    '.',
+// 	kind15Sensor:   'S',
+// 	kind15Beacon:   'B',
+// 	kind15Coverage: '#',
+// }
 
 func getX(c complex128) float64 {
 	return real(c)
@@ -141,31 +141,31 @@ func parseInput15(lines []string) caveData {
 	return cave
 }
 
-func computeCoverage(cave caveData) {
-	for y := cave.yMin; y < cave.yMax; y++ {
-		for x := cave.xMin; x < cave.xMax; x++ {
-			if cave.contents[complex(x, y)] == kind15Empty && isSensed(complex(x, y), cave.sensors) {
-				cave.contents[complex(x, y)] = kind15Coverage
-			}
-		}
-	}
-}
+// func computeCoverage(cave caveData) {
+// 	for y := cave.yMin; y < cave.yMax; y++ {
+// 		for x := cave.xMin; x < cave.xMax; x++ {
+// 			if cave.contents[complex(x, y)] == kind15Empty && isSensed(complex(x, y), cave.sensors) {
+// 				cave.contents[complex(x, y)] = kind15Coverage
+// 			}
+// 		}
+// 	}
+// }
 
-func printCave15(cave caveData) []string {
-	rows := make([]string, int(cave.yMax+1))
-	row := fmt.Sprintf("%5d", int(cave.xMin))
-	rows = append(rows, row)
-	for y := cave.yMin; y <= cave.yMax; y++ {
-		row = fmt.Sprintf("%3d", int(y))
-		for x := cave.xMin; x <= cave.xMax; x++ {
-			r := kind15Runes[cave.contents[complex(x, y)]]
-			row += string(r)
-		}
-		rows = append(rows, row)
-	}
+// func printCave15(cave caveData) []string {
+// 	rows := make([]string, int(cave.yMax+1))
+// 	row := fmt.Sprintf("%5d", int(cave.xMin))
+// 	rows = append(rows, row)
+// 	for y := cave.yMin; y <= cave.yMax; y++ {
+// 		row = fmt.Sprintf("%3d", int(y))
+// 		for x := cave.xMin; x <= cave.xMax; x++ {
+// 			r := kind15Runes[cave.contents[complex(x, y)]]
+// 			row += string(r)
+// 		}
+// 		rows = append(rows, row)
+// 	}
 
-	return rows
-}
+// 	return rows
+// }
 
 func (p Day15) PartA(lines []string) any {
 	cave := parseInput15(lines)
