@@ -7,6 +7,8 @@ github.com/deckarep/golang-set/v2 v2.1.0 h1:g47V4Or+DUdzbs8FxCCmgb6VYd+ptPAngjM6
 github.com/deckarep/golang-set/v2 v2.1.0/go.mod h1:VAky9rY/yGXJOLEDv3OMci+7wtDpOF4IN+y82NBOac4=
 github.com/dolmen-go/codegen v1.0.0 h1:B/U0E1Cf5KekYF7Cx+M+CVi+Kk5juyGetb5QcXWZSgw=
 github.com/dolmen-go/codegen v1.0.0/go.mod h1:hw2TU7hTAA0vaJ1Cow+oSW9ClG+4uBGn6zPXIXsYW5c=
+github.com/dominikbraun/graph v0.15.0 h1:U6N0fWJTDsUO9R5NhFE1Xi0YGGQ1+nKV9KO5apClf3E=
+github.com/dominikbraun/graph v0.15.0/go.mod h1:yOjYyogZLY1LSG9E33JWZJiq5k83Qy2C6POAuiViluc=
 github.com/golang-collections/collections v0.0.0-20130729185459-604e922904d3 h1:zN2lZNZRflqFyxVaTIU61KNKQ9C0055u9CAfpmqUvo4=
 github.com/golang-collections/collections v0.0.0-20130729185459-604e922904d3/go.mod h1:nPpo7qLxd6XL3hWJG/O60sR8ZKfMCiIoNap5GvD12KU=
 github.com/inconshreveable/mousetrap v1.0.1 h1:U3uMjPSQEBMNp1lFxmllqCPM6P5u/Xq7Pgzkat/bFNc=
