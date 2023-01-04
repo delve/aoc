@@ -5,14 +5,19 @@ look into some automation to tie AOC_SESSION to github actions secret, or vice v
 
 gitpod-recommended VSCode extension `premparihar.gotestexplorer` is apparently not available. do i need a test extension for this project?
 
-figure out how to deal with single-package per year function collisions. EG parseLine() for day 2 & day 3.
+figure out how to deal with single-package per year name collisions. EG parseLine() for day 2 & day 3. monkey & monkey21 because monkeys appear often
     this kind of duplicate name is almost guaranteed? how to work around it? parseLine03() is just... ugly
 
 get rid of the trailing blank line in the downloaded input file
 
 build/incorporate generic tree type in common
 
+set up so `go test` will check against known answers? (eg in the samples, and refactoring P1 code to get P2 answers without breaking P1)
+    should the correct answers be in code, or in text files like the inputs? how to deal with multi-line output like 2022 day 10? (obv, compare the whole long string, but is storing/expressing it more fraught?)
+
 puzzle todos
 ------------
 fix puzzle 202211 - after converting to type big for part 2 everything is borked
-
+fix puzzle 202215 - second half unsolved, nds better algo
+fix puzzle 202216 - nonfunctional code
+fix puzzle 202221 - solve the algebra in code. also seems to be broken currently
