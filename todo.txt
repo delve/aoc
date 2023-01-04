@@ -21,3 +21,4 @@ fix puzzle 202211 - after converting to type big for part 2 everything is borked
 fix puzzle 202215 - second half unsolved, nds better algo
 fix puzzle 202216 - nonfunctional code
 fix puzzle 202221 - solve the algebra in code. also seems to be broken currently
+fix puzzle 202221 - currently fully broken. bounds aren't found correctly
