@@ -1,0 +1,17 @@
+gopherHoles:
+  - name: aoc
+    description: Advent of Code
+    gopherTunnel: 
+      name: year
+      gophercise: day
+  - name: bookstudies
+    description: A multi-tunnel example, with fake books
+    gopherTunnel: 
+      name: book
+      gopherTunnel:
+        name: chapter
+        gophercise: exercise
+  - name: projectEuler
+    description: A no-tunnel example, with Project Euler
+    gophercise: problem
+

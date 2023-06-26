@@ -2,11 +2,11 @@
 package year2022
 
 import (
-	"aocgen/pkg/aoc"
+	"aocgen/pkg/aoc-original"
 )
 
 func Init() {
-	aoc.Register(2022, map[int]aoc.Puzzle{
+	aocoriginal.Register(2022, map[int]aocoriginal.Puzzle{
 		1:  Day01{},
 		2:  Day02{},
 		3:  Day03{},

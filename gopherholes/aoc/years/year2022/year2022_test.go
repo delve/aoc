@@ -4,13 +4,13 @@ package year2022
 import (
 	"testing"
 
-	"aocgen/pkg/aoc"
+	"aocgen/pkg/aoc-original"
 )
 
 func Benchmark2022Day01(b *testing.B) {
 	Init()
-	input := aoc.TestInput(2022, 1)
-	p := aoc.NewPuzzle(2022, 1)
+	input := aocoriginal.TestInput(2022, 1)
+	p := aocoriginal.NewPuzzle(2022, 1)
 	b.Run("PartA", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
@@ -26,8 +26,8 @@ func Benchmark2022Day01(b *testing.B) {
 }
 func Benchmark2022Day02(b *testing.B) {
 	Init()
-	input := aoc.TestInput(2022, 2)
-	p := aoc.NewPuzzle(2022, 2)
+	input := aocoriginal.TestInput(2022, 2)
+	p := aocoriginal.NewPuzzle(2022, 2)
 	b.Run("PartA", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
@@ -43,8 +43,8 @@ func Benchmark2022Day02(b *testing.B) {
 }
 func Benchmark2022Day03(b *testing.B) {
 	Init()
-	input := aoc.TestInput(2022, 3)
-	p := aoc.NewPuzzle(2022, 3)
+	input := aocoriginal.TestInput(2022, 3)
+	p := aocoriginal.NewPuzzle(2022, 3)
 	b.Run("PartA", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
@@ -60,8 +60,8 @@ func Benchmark2022Day03(b *testing.B) {
 }
 func Benchmark2022Day04(b *testing.B) {
 	Init()
-	input := aoc.TestInput(2022, 4)
-	p := aoc.NewPuzzle(2022, 4)
+	input := aocoriginal.TestInput(2022, 4)
+	p := aocoriginal.NewPuzzle(2022, 4)
 	b.Run("PartA", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
@@ -77,8 +77,8 @@ func Benchmark2022Day04(b *testing.B) {
 }
 func Benchmark2022Day05(b *testing.B) {
 	Init()
-	input := aoc.TestInput(2022, 5)
-	p := aoc.NewPuzzle(2022, 5)
+	input := aocoriginal.TestInput(2022, 5)
+	p := aocoriginal.NewPuzzle(2022, 5)
 	b.Run("PartA", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
@@ -94,8 +94,8 @@ func Benchmark2022Day05(b *testing.B) {
 }
 func Benchmark2022Day06(b *testing.B) {
 	Init()
-	input := aoc.TestInput(2022, 6)
-	p := aoc.NewPuzzle(2022, 6)
+	input := aocoriginal.TestInput(2022, 6)
+	p := aocoriginal.NewPuzzle(2022, 6)
 	b.Run("PartA", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
@@ -111,8 +111,8 @@ func Benchmark2022Day06(b *testing.B) {
 }
 func Benchmark2022Day07(b *testing.B) {
 	Init()
-	input := aoc.TestInput(2022, 7)
-	p := aoc.NewPuzzle(2022, 7)
+	input := aocoriginal.TestInput(2022, 7)
+	p := aocoriginal.NewPuzzle(2022, 7)
 	b.Run("PartA", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
@@ -128,8 +128,8 @@ func Benchmark2022Day07(b *testing.B) {
 }
 func Benchmark2022Day08(b *testing.B) {
 	Init()
-	input := aoc.TestInput(2022, 8)
-	p := aoc.NewPuzzle(2022, 8)
+	input := aocoriginal.TestInput(2022, 8)
+	p := aocoriginal.NewPuzzle(2022, 8)
 	b.Run("PartA", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
@@ -145,8 +145,8 @@ func Benchmark2022Day08(b *testing.B) {
 }
 func Benchmark2022Day09(b *testing.B) {
 	Init()
-	input := aoc.TestInput(2022, 9)
-	p := aoc.NewPuzzle(2022, 9)
+	input := aocoriginal.TestInput(2022, 9)
+	p := aocoriginal.NewPuzzle(2022, 9)
 	b.Run("PartA", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
@@ -162,8 +162,8 @@ func Benchmark2022Day09(b *testing.B) {
 }
 func Benchmark2022Day10(b *testing.B) {
 	Init()
-	input := aoc.TestInput(2022, 10)
-	p := aoc.NewPuzzle(2022, 10)
+	input := aocoriginal.TestInput(2022, 10)
+	p := aocoriginal.NewPuzzle(2022, 10)
 	b.Run("PartA", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
@@ -179,8 +179,8 @@ func Benchmark2022Day10(b *testing.B) {
 }
 func Benchmark2022Day11(b *testing.B) {
 	Init()
-	input := aoc.TestInput(2022, 11)
-	p := aoc.NewPuzzle(2022, 11)
+	input := aocoriginal.TestInput(2022, 11)
+	p := aocoriginal.NewPuzzle(2022, 11)
 	b.Run("PartA", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
@@ -196,8 +196,8 @@ func Benchmark2022Day11(b *testing.B) {
 }
 func Benchmark2022Day12(b *testing.B) {
 	Init()
-	input := aoc.TestInput(2022, 12)
-	p := aoc.NewPuzzle(2022, 12)
+	input := aocoriginal.TestInput(2022, 12)
+	p := aocoriginal.NewPuzzle(2022, 12)
 	b.Run("PartA", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
@@ -213,8 +213,8 @@ func Benchmark2022Day12(b *testing.B) {
 }
 func Benchmark2022Day14(b *testing.B) {
 	Init()
-	input := aoc.TestInput(2022, 14)
-	p := aoc.NewPuzzle(2022, 14)
+	input := aocoriginal.TestInput(2022, 14)
+	p := aocoriginal.NewPuzzle(2022, 14)
 	b.Run("PartA", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
@@ -230,8 +230,8 @@ func Benchmark2022Day14(b *testing.B) {
 }
 func Benchmark2022Day15(b *testing.B) {
 	Init()
-	input := aoc.TestInput(2022, 15)
-	p := aoc.NewPuzzle(2022, 15)
+	input := aocoriginal.TestInput(2022, 15)
+	p := aocoriginal.NewPuzzle(2022, 15)
 	b.Run("PartA", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
@@ -247,8 +247,8 @@ func Benchmark2022Day15(b *testing.B) {
 }
 func Benchmark2022Day16(b *testing.B) {
 	Init()
-	input := aoc.TestInput(2022, 16)
-	p := aoc.NewPuzzle(2022, 16)
+	input := aocoriginal.TestInput(2022, 16)
+	p := aocoriginal.NewPuzzle(2022, 16)
 	b.Run("PartA", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
@@ -264,8 +264,8 @@ func Benchmark2022Day16(b *testing.B) {
 }
 func Benchmark2022Day20(b *testing.B) {
 	Init()
-	input := aoc.TestInput(2022, 20)
-	p := aoc.NewPuzzle(2022, 20)
+	input := aocoriginal.TestInput(2022, 20)
+	p := aocoriginal.NewPuzzle(2022, 20)
 	b.Run("PartA", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
@@ -281,8 +281,8 @@ func Benchmark2022Day20(b *testing.B) {
 }
 func Benchmark2022Day21(b *testing.B) {
 	Init()
-	input := aoc.TestInput(2022, 21)
-	p := aoc.NewPuzzle(2022, 21)
+	input := aocoriginal.TestInput(2022, 21)
+	p := aocoriginal.NewPuzzle(2022, 21)
 	b.Run("PartA", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
@@ -298,8 +298,8 @@ func Benchmark2022Day21(b *testing.B) {
 }
 func Benchmark2022Day23(b *testing.B) {
 	Init()
-	input := aoc.TestInput(2022, 23)
-	p := aoc.NewPuzzle(2022, 23)
+	input := aocoriginal.TestInput(2022, 23)
+	p := aocoriginal.NewPuzzle(2022, 23)
 	b.Run("PartA", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {

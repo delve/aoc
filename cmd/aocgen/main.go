@@ -11,10 +11,11 @@ import (
 	"strings"
 	"time"
 
-	"aocgen/pkg/aoc"
+	aocoriginal "aocgen/pkg/aoc-original"
 	"aocgen/pkg/common"
 	"aocgen/pkg/gen"
-	"aocgen/pkg/years"
+
+	"aocgen/gopherholes/aoc"
 
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -53,11 +54,11 @@ var buildCmd = &cobra.Command{
 	Short: "Build generated code",
 	Long:  "",
 	Run: func(cmd *cobra.Command, args []string) {
-		years.RegisterYears()
+		// years.RegisterYears()
 
 		gen.InitializeYearsPackages()
 
-		years := aoc.Years()
+		years := aocoriginal.Years()
 		for _, y := range years {
 			gen.InitializePackage(y)
 			gen.NewBenchmarks(y)
@@ -109,10 +110,10 @@ var listCmd = &cobra.Command{
 	Short: "List all years or list all puzzles in a year",
 	Long:  "",
 	Run: func(cmd *cobra.Command, args []string) {
-		years.RegisterYears()
+		// years.RegisterYears()
 
 		if year != 0 {
-			puzzles := aoc.Puzzles(year)
+			puzzles := aocoriginal.Puzzles(year)
 			keys := make([]int, 0)
 			keysStrings := make([]string, 0)
 
@@ -129,7 +130,7 @@ var listCmd = &cobra.Command{
 			return
 		}
 
-		years := aoc.Years()
+		years := aocoriginal.Years()
 		var yearsStrings []string
 		for y := range years {
 			yearsStrings = append(yearsStrings, strconv.Itoa(years[y]))
@@ -187,7 +188,7 @@ var runCmd = &cobra.Command{
 			logrus.Fatal("invalid year")
 		}
 
-		years.RegisterYears()
+		// years.RegisterYears()
 
 		if day > 0 {
 			runDay(year, day, sample)
@@ -228,16 +229,17 @@ func Execute() {
 }
 
 func runYear(year int, sample bool) {
-	puzzles := aoc.Puzzles(year)
+	puzzles := aocoriginal.Puzzles(year)
 	for i := 1; i <= len(puzzles); i++ {
 		runDay(year, i, sample)
 	}
 }
 
 func runDay(year, day int, sample bool) {
-	aoc.Run(year, day, aoc.NewPuzzle(year, day), aoc.Input(year, day, sample))
+	aocoriginal.Run(year, day, aocoriginal.NewPuzzle(year, day), aocoriginal.Input(year, day, sample))
 }
 
 func main() {
+	aoc.Test()
 	Execute()
 }

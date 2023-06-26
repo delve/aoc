@@ -6,6 +6,10 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+func Test() {
+	logrus.Info("Hello gopherholes!")
+}
+
 type Puzzle interface {
 	PartA([]string) any
 	PartB([]string) any
