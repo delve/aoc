@@ -1,4 +1,7 @@
-# Generalization
+# Gopherholes
+A framework for housing GoLang coding exercises. Becaue gophers have to live somewhere.
+
+# Generalization from the original AOC framework
 ## Organization
 gopherHole: This may be a site, a class, as curriculum, etc. Some examples are below.
 
