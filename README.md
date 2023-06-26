@@ -1,3 +1,19 @@
+# Generalization
+exercise sets are called gopherholes
+
+using AOC as an example
+gopherhole: AOC
+gopherset: year
+gophercise: day (blatantly stolen from gophercises.com)
+
+```
+cmd init (--gopherhole) \<gopherhole name> (--gopherset) (\<what to call gophersets EG year>) (--gophercise) (\<what to call gohpercises EG day>)
+```
+Initialize a base gopherhole with syntax for subpackages utilizing the given semantics. If gopherset and gophercize are left out they default to set and exercise
+
+Create at general 'gohperhole' package with common code (EG retrieving problem inputs for AOC). Each set is a (sub??)package containing common code for the set (EG to execute all available days for AOC for the year). Each exercise is a distinct package, providing name isolation for functions (EG paresLine()) 
+
+
 # AOCgen
 
 AOCgen is a tool to assist in solving Advent of Code in Go.
