@@ -53,7 +53,7 @@ Abusing the "standard" layout somewhat.
 ```
 .
 ├── cmd          # entry point, CLI code. may contain gopherhole names in codegen files
-│   └── aocgen
+│   └── gopherholes
 ├── gopherfield  # code for specific gopherholes including custom codegen logic
 └── pkg          # code for the framework only.
     └── common   # common code leveraged all over the place (generics like the Check() shorthand for testing 'e')

@@ -17,6 +17,7 @@ var rootCmd = &cobra.Command{
 var setupCmd = &cobra.Command{
 	Use:   "setup",
 	Short: "AOC is a tool to support completing Advent of Code puzzles",
+	Aliases: []string{"dig"},
 	Long:  "AOC supports generating puzzle data, including inputs directly from the website, and benchmarking answers",
 	Run: func(cmd *cobra.Command, args []string) {
 		gen.Init()
