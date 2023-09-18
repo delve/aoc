@@ -1,4 +1,4 @@
-module aocgen
+module test
 
 go 1.19
 
