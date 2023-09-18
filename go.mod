@@ -1,4 +1,4 @@
-module aocgen
+module gopherholes
 
 go 1.19
 
