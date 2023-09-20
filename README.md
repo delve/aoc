@@ -1,3 +1,21 @@
+# Design Notes
+* gopherholes will codegen a new binary that executes the gohpercises
+* gopherholes will rely on the YAML file as the map of truth for the gopherfield. CLI params will be expressed into the YAML file first, then codegen functions will turn the YAML into concrete output.
+* gopherholes will require shortnames suitable for Go code var names. can be provided or generated, generation will need to check a list of shortnames for uniqueness, and can generate names as [0:5]\<index# between 01..99>
+* During codegen customizable files will be stubbed out only if they do not currently exist. post generation the codegen prefix must be removed to prevent Go checkers complaining about customizations
+* after 1.0 changes to customizable file templates will be considered breaking, as it's likely to require manual corrections to customizations
+
+user interaction becomes:
+1. build a yaml map of the desired gopherfield, or use gopherholes params to let the CLI build it
+1. 1. gopherholes codegen writes the concrete gopherfield to disk
+   1. at the same time gopherholes codegen writes the Go code for a binary named for the gopherfield. codegen tags are left in these files to reduce accidental breakage
+1. optional edits to custom code files
+1. `go build` is used to compile the `gopherfield` binary and included custom code and gophercises
+1. `gopherfield` is executed to run the gophercises or any custom code such as perf tests, cumulative perf tests, etc
+
+
+CLI construction of the YAML to be done first, to wet feet with YAML handling
+
 # Gopherholes
 A framework for housing GoLang coding exercises. Becaue gophers have to live somewhere.
 
