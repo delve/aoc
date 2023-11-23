@@ -20,10 +20,12 @@ user interaction becomes:
 CLI construction of the YAML to be done first, to wet feet with YAML handling
 
 # Gopherholes
-A framework for housing GoLang coding exercises. Becaue gophers have to live somewhere.
+A framework for housing GoLang coding exercises. Because gophers have to live somewhere.
 
 # Generalization from the original AOC framework
 ## Organization
+gopherField: This is a distinct repo that will contain all the coding exercises.
+
 gopherHole: This may be a site, a class, a curriculum, etc. Some examples are below.
 
 gopherTunnel: This is an optional subgrouping for another layer (or more) of shared code (EG to execute all available days for AOC for the year).
