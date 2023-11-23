@@ -6,10 +6,13 @@
 * after 1.0 changes to customizable file templates will be considered breaking, as it's likely to require manual corrections to customizations
 
 user interaction becomes:
+1. create a repo for the gopherfield
 1. build a yaml map of the desired gopherfield, or use gopherholes params to let the CLI build it
 1. 1. gopherholes codegen writes the concrete gopherfield to disk
    1. at the same time gopherholes codegen writes the Go code for a binary named for the gopherfield. codegen tags are left in these files to reduce accidental breakage
 1. optional edits to custom code files
+1. 1. `go run` is used to test & debug? how does this work?
+   1. how does IDE F5 debugging function?
 1. `go build` is used to compile the `gopherfield` binary and included custom code and gophercises
 1. `gopherfield` is executed to run the gophercises or any custom code such as perf tests, cumulative perf tests, etc
 
@@ -21,33 +24,46 @@ A framework for housing GoLang coding exercises. Becaue gophers have to live som
 
 # Generalization from the original AOC framework
 ## Organization
-gopherHole: This may be a site, a class, as curriculum, etc. Some examples are below.
+gopherHole: This may be a site, a class, a curriculum, etc. Some examples are below.
 
 gopherTunnel: This is an optional subgrouping for another layer (or more) of shared code (EG to execute all available days for AOC for the year).
 
 gophercise: This is a single, atomic exercise that can be executed in isolation or as part of a set. It is a distinct package and thus avoiding name collisions.  (blatantly stolen from gophercises.com)
 
 ### Some examples
-
+#### Single tunnel
 A hole with a single tunnel, using [AoC](https://adventofcode.com/) as an example
 ```
 gopherHole: AOC
-gopherTunnel: year
-gophercise: day
+    gopherTunnel: y2022
+        gophercise: d01
+        gophercise: d02
+    gopherTunnel: y2023
+        gophercise: d01
+        gophercise: d02
 ```
+#### Multi-tunnel
 A multi-tunnel example, with fake books:
 ```
 gopherHole: bookstudies
-gopherTunnel: goOnCoding
-gopherTunnel: chapter5
-gophercise: exercise1
+    gopherTunnel: goOnCoding
+        gopherTunnel: chapter5
+            gophercise: exercise1
+            gophercise: exercise2
+    gopherTunnel: codeForDummies
+        gopherTunnel: chapterTheFirst
+            gophercise: obligatoryHelloWorld
 ```
+#### No tunnels
 A no-tunnel example with Project Euler:
 ```
 gopherHole: projectEuler
-gophercise: multiplesOf3Or5
+    gophercise: multiplesOf3Or5
 ```
-(or exercise1 to conform to [style guidelines](https://go.dev/blog/package-names))
+(or exercise1 to conform to [style guidelines](https://go.dev/blog/package-names) if you prefer, this framework is not dogmatic here)
+#### Mixed depth
+untested, not on roadmap, possibly functioning, or may be added later
+
 
 ## commands
 ```
