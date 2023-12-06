@@ -15,6 +15,7 @@ func PrefixOrDie(prefix, value string) {
 }
 
 // Atoi trims space from its input string and converts it to an int. or dies trying.
+// TODO: make it able to handle slices
 func Atoi(s string) int {
 	ret, err := strconv.Atoi(strings.TrimSpace(s))
 	Check(err)
