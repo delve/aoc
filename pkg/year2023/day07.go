@@ -72,9 +72,9 @@ var runeCardsP2 = map[rune]int{
 }
 
 type hand struct {
-	cards     [5]int
-	grade     int // because 'type' is a syntax error here
-	rank, bet int
+	cards [5]int
+	grade int // because 'type' is a syntax error here
+	bet   int
 }
 
 func (p Day07) PartA(lines []string) any {
