@@ -52,57 +52,57 @@ func (p Day05) PartA(lines []string) any {
 	return seedLocs[0]
 }
 
-func (p Day05) deprecated_PartB(lines []string) any {
-	inputSplit := strings.Split(lines[0], " ")
-	seedInts := []int{}
-	for i := 1; i < len(inputSplit); i++ {
-		seedInts = append(seedInts, common.Atoi(inputSplit[i]))
-	}
+// func (p Day05) deprecated_PartB(lines []string) any {
+// 	inputSplit := strings.Split(lines[0], " ")
+// 	seedInts := []int{}
+// 	for i := 1; i < len(inputSplit); i++ {
+// 		seedInts = append(seedInts, common.Atoi(inputSplit[i]))
+// 	}
 
-	seeds := []int{}
-	for i := 0; i < len(seedInts); i = i + 2 {
-		fmt.Printf("Growing slice by %v.\n", seedInts[i+1])
-		seeds = slices.Grow(seeds, seedInts[i+1])
-		for j := seedInts[i]; j < seedInts[i]+seedInts[i+1]; j++ {
-			seeds = append(seeds, j)
-		}
-	}
+// 	seeds := []int{}
+// 	for i := 0; i < len(seedInts); i = i + 2 {
+// 		fmt.Printf("Growing slice by %v.\n", seedInts[i+1])
+// 		seeds = slices.Grow(seeds, seedInts[i+1])
+// 		for j := seedInts[i]; j < seedInts[i]+seedInts[i+1]; j++ {
+// 			seeds = append(seeds, j)
+// 		}
+// 	}
 
-	fmt.Printf("Got %v seeds.\n", len(seeds))
+// 	fmt.Printf("Got %v seeds.\n", len(seeds))
 
-	maps := []maperator{}
-	cursor := 2
-	for i := 0; i < 7; i++ {
-		fmt.Printf("Starting map %v.\n", i)
-		// find lines slice containing map
-		start := cursor + 1
-		for ; len(lines[cursor]) > 0; cursor++ {
-		}
+// 	maps := []maperator{}
+// 	cursor := 2
+// 	for i := 0; i < 7; i++ {
+// 		fmt.Printf("Starting map %v.\n", i)
+// 		// find lines slice containing map
+// 		start := cursor + 1
+// 		for ; len(lines[cursor]) > 0; cursor++ {
+// 		}
 
-		// parse map into maps
-		maps = append(maps, parseMap(lines[start:cursor]))
-		cursor++
-	}
+// 		// parse map into maps
+// 		maps = append(maps, parseMap(lines[start:cursor]))
+// 		cursor++
+// 	}
 
-	smallest := math.MaxInt32
-	// seedLocs := []int{}
-	for _, seed := range seeds {
-		location := seed
-		for _, almanac := range maps {
-			// fmt.Printf("%v\n", location)
-			location = almanac.translate(location)
-		}
-		// seedLocs = append(seedLocs, location)
-		if location < smallest {
-			smallest = location
-		}
-	}
+// 	smallest := math.MaxInt32
+// 	// seedLocs := []int{}
+// 	for _, seed := range seeds {
+// 		location := seed
+// 		for _, almanac := range maps {
+// 			// fmt.Printf("%v\n", location)
+// 			location = almanac.translate(location)
+// 		}
+// 		// seedLocs = append(seedLocs, location)
+// 		if location < smallest {
+// 			smallest = location
+// 		}
+// 	}
 
-	// slices.Sort(seedLocs)
-	// fmt.Printf("%v\n", seedLocs)
+// 	// slices.Sort(seedLocs)
+// 	// fmt.Printf("%v\n", seedLocs)
 
-	return smallest
-}
+// 	return smallest
+// }
 
 func (p Day05) PartB(lines []string) any {
 	inputSplit := strings.Split(lines[0], " ")
