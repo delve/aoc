@@ -28,3 +28,10 @@ func MustFloat(s string) float64 {
 	Check(err)
 	return ret
 }
+
+// MustFloat trims space from its input string and converts it to float64. or dies trying.
+func MustParseInt(s string, base int) int64 {
+	ret, err := strconv.ParseInt(s, base, 64)
+	Check(err)
+	return ret
+}
