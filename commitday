@@ -1,0 +1,4 @@
+#!/bin/sh
+git add *
+git commit -am "solution for $1/$2"
+git push
