@@ -65,24 +65,58 @@ func isOrdered(update []int, rules map[int]map[int]bool) bool {
 }
 
 func fixOrder(update []int, rules map[int]map[int]bool) []int {
+	// positionByVal := map[int]*list.Element{}
+	// set := list.New()
+	// for _, pag := range update {
+	// 	positionByVal[pag] = set.PushBack(pag)
+	// }
+
+	// for lowVal, highVals := range rules {
+	// 	if _, contained := positionByVal[lowVal]; contained {
+	// 		for highVal := range highVals {
+	// 			if _, contained := positionByVal[highVal]; contained {
+	// 				if positionByVal[lowVal] > positionByVal[highVal]  {
+	// 					for i := 0; i < positionByVal[lowVal] - positionByVal[highVal]; i++ {
+
+	// 						valByPosition[positionByVal[lowVal]-i] = valByPosition[positionByVal[lowVal]-i-1]
+	// 						positionByVal[valByPosition[positionByVal[lowVal]-i]] = positionByVal[positionByVal[lowVal]-i]+1
+	// 					}
+	// 					valByPosition[positionByVal[highVal]] = lowVal
+	// 					positionByVal[valByPosition[positionByVal[highVal]]] = positionByVal[highVal]
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// }
+
 	positionByVal := map[int]int{}
 	valByPosition := map[int]int{}
 	for idx, val := range update {
 		positionByVal[val] = idx
 		valByPosition[idx] = val
 	}
+
+	shiftLeft := func(positionByVal map[int]int, valByPosition map[int]int, targetPos int, distance int) (posMap map[int]int, valMap map[int]int) {
+		targetVal := valByPosition[targetPos]
+
+		for i := 0; i < distance; i++ {
+
+			valByPosition[targetPos-i] = valByPosition[targetPos-i-1]
+			positionByVal[valByPosition[targetPos-i]] = targetPos - i
+		}
+		// set the last position
+		valByPosition[targetPos-distance] = targetVal
+		positionByVal[targetVal] = targetPos - distance
+
+		return positionByVal, valByPosition
+	}
+
 	for lowVal, highVals := range rules {
 		if _, contained := positionByVal[lowVal]; contained {
 			for highVal := range highVals {
 				if _, contained := positionByVal[highVal]; contained {
-					if positionByVal[lowVal] > positionByVal[highVal]  {
-						for i := 0; i < positionByVal[lowVal] - positionByVal[highVal]; i++ {
-
-							valByPosition[positionByVal[lowVal]-i] = valByPosition[positionByVal[lowVal]-i-1]
-							positionByVal[valByPosition[positionByVal[lowVal]-i]] = positionByVal[positionByVal[lowVal]-i]+1
-						}
-						valByPosition[positionByVal[highVal]] = lowVal
-						positionByVal[valByPosition[positionByVal[highVal]]] = positionByVal[highVal]
+					if positionByVal[lowVal] > positionByVal[highVal] {
+						shiftLeft(positionByVal, valByPosition, positionByVal[lowVal], positionByVal[lowVal]-positionByVal[highVal])
 					}
 				}
 			}
