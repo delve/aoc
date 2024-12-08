@@ -36,6 +36,7 @@ func (p *Day08) parseInput(lines []string) {
 	p.highBounds = complex(float64(rows), float64(columns))
 }
 
+//lint:ignore U1000 BECAUSE I SAID SO YOU ANAL RETARD
 func (p Day08) printMap(includeAntinodes bool) {
 	rowHeader := "%2d:"
 	rowNum := 0

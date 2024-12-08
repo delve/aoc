@@ -28,6 +28,7 @@ func (p *Day06) buildLabMap(input []string) {
 	}
 }
 
+//lint:ignore U1000 BECAUSE I SAID SO YOU ANAL RETARD
 func (p Day06) printMap() {
 	fmt.Printf("Start Position %d, %d\n", row(p.startPos), column(p.startPos))
 	position := complex(0.0, 0.0)
