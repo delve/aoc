@@ -23,18 +23,23 @@ func (p *Day07) parseInput(inputs []string) {
 }
 
 func (p Day07) checkValidity(testVal int, inputs []int, equation string) (bool, string) {
-	if len(inputs) == 1 && inputs[0] == testVal {
+	accumulator, rest := inputs[0], inputs[1:]
+	if len(rest) == 0 && accumulator == testVal {
 		return true, equation
 	}
-	if len(inputs) == 1 || inputs[0] > testVal {
+	if len(rest) == 0 || accumulator > testVal {
 		return false, equation
 	}
+	nextIter := make([]int, len(rest))
+	copy(nextIter, rest)
+	nextIter[0] = accumulator * rest[0]
 	// i don't understand why inputs[2:] isn't causing an out of bounds error here when len(inputs) == 2
-	if ok, equation := p.checkValidity(testVal, append([]int{inputs[0] * inputs[1]}, inputs[2:]...), equation); ok {
+	if ok, equation := p.checkValidity(testVal, nextIter, equation); ok {
 		equation = "*" + equation
 		return true, equation
 	}
-	if ok, equation := p.checkValidity(testVal, append([]int{inputs[0] + inputs[1]}, inputs[2:]...), equation); ok {
+	nextIter[0] = accumulator + rest[0]
+	if ok, equation := p.checkValidity(testVal, nextIter, equation); ok {
 		equation = "+" + equation
 		return true, equation
 	}
@@ -46,15 +51,15 @@ func (p Day07) PartA(lines []string) any {
 	p.parseInput(lines[:len(lines)-1])
 	sum := 0
 	for testVal, nums := range p.calibrations {
-		sanitySum := nums[0]
-		for _, num := range nums[1:] {
+		sanitySum := 1
+		for _, num := range nums {
 			sanitySum = sanitySum * num
 		}
 		if sanitySum < testVal { // largest possible result is too small, skip it
 			continue
 		}
-		sanitySum = nums[0]
-		for _, num := range nums[1:] {
+		sanitySum = 0
+		for _, num := range nums {
 			sanitySum = sanitySum + num
 		}
 		if sanitySum > testVal { // smallest possible result is too large, skip it
