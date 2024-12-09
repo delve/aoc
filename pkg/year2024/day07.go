@@ -23,22 +23,23 @@ func (p *Day07) parseInput(inputs []string) {
 }
 
 func (p Day07) checkValidity(testVal int, inputs []int, equation string) (bool, string) {
-	accumulator, rest := inputs[0], inputs[1:]
-	if len(rest) == 0 && accumulator == testVal {
+	if len(inputs) == 1 && inputs[0] == testVal {
 		return true, equation
 	}
-	if len(rest) == 0 || accumulator > testVal {
+	if len(inputs) == 1 || inputs[0] > testVal {
 		return false, equation
 	}
-	nextIter := make([]int, len(rest))
-	copy(nextIter, rest)
-	nextIter[0] = accumulator * rest[0]
-	// i don't understand why inputs[2:] isn't causing an out of bounds error here when len(inputs) == 2
+
+	nextIter := make([]int, len(inputs)-1)
+	copy(nextIter, inputs[1:])
+
+	nextIter[0] = inputs[0] * inputs[1]
 	if ok, equation := p.checkValidity(testVal, nextIter, equation); ok {
 		equation = "*" + equation
 		return true, equation
 	}
-	nextIter[0] = accumulator + rest[0]
+
+	nextIter[0] = inputs[0] + inputs[1]
 	if ok, equation := p.checkValidity(testVal, nextIter, equation); ok {
 		equation = "+" + equation
 		return true, equation
@@ -56,6 +57,7 @@ func (p Day07) PartA(lines []string) any {
 			sanitySum = sanitySum * num
 		}
 		if sanitySum < testVal { // largest possible result is too small, skip it
+			fmt.Printf("too small: %d > %s = %d\n", testVal, strings.Trim(strings.Join(strings.Fields(fmt.Sprint(nums)), "*"), "[]"), sanitySum)
 			continue
 		}
 		sanitySum = 0
@@ -63,6 +65,7 @@ func (p Day07) PartA(lines []string) any {
 			sanitySum = sanitySum + num
 		}
 		if sanitySum > testVal { // smallest possible result is too large, skip it
+			fmt.Printf("too large: %d < %s = %d\n", testVal, strings.Trim(strings.Join(strings.Fields(fmt.Sprint(nums)), "+"), "[]"), sanitySum)
 			continue
 		}
 		if ok, equation := p.checkValidity(testVal, nums, ""); ok {
@@ -83,11 +86,14 @@ func (p Day07) PartA(lines []string) any {
 				println(out)
 				panic("!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 			}
-			println(out)
+			fmt.Printf("Valid: %s\n", out)
 			sum += testVal
 		} else {
-			fmt.Printf("%d = %v\n", testVal, nums)
+			fmt.Printf("impossible: %d = %v\n", testVal, nums)
 		}
+	}
+	if sum == 5751665302886 {
+		fmt.Printf("\n\nnot it (high? low? who knows!)\n\n")
 	}
 	return sum
 }
