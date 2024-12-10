@@ -7,8 +7,6 @@ type Day06 struct {
 	startPos complex128
 }
 
-// TODO: extract cplx coordinate map & walk into library. walk accepts pointer reciever func to avoid repeating loops everywhere
-
 func (p *Day06) buildLabMap(input []string) {
 	p.lab = map[complex128]rune{}
 	p.startPos = complex(-1.0, -1.0)

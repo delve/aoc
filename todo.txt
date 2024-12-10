@@ -16,6 +16,13 @@ build/incorporate generic tree type in common
 set up so `go test` will check against known answers? (eg in the samples, and refactoring P1 code to get P2 answers without breaking P1)
     should the correct answers be in code, or in text files like the inputs? how to deal with multi-line output like 2022 day 10? (obv, compare the whole long string, but is storing/expressing it more fraught?)
 
+generalizing todos
+------------------
+generalize wordsearch (see legendary_garbanzos) from 202404
+move row & column funcs to common or other package from 202404
+generalize 2d map, see 202406, 202410, 202212
+update template with parselines pattern
+
 puzzle todos
 ------------
 fix puzzle 202211 - after converting to type big for part 2 everything is borked

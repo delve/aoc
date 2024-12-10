@@ -6,8 +6,6 @@ import (
 
 type Day04 struct{}
 
-// TODO: extract this into a word search library. also try the other guy's algo and see if it's so much faster in the general case
-
 func row(c complex128) int {
 	return int(real(c))
 }
