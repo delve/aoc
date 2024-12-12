@@ -97,6 +97,7 @@ func (p *Day12) identifyRegions() {
 
 }
 
+//lint:ignore U1000 not always output
 func (p Day12) printMap() {
 	fmt.Print("Regions:\n")
 	for id, region := range p.regions {

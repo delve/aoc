@@ -52,6 +52,8 @@ func (p *Day10) parseInput(lines []string) {
 }
 
 // borkeneded atm
+//
+//lint:ignore U1000 not always output
 func (p Day10) printMap() {
 	fmt.Printf("Trailheads: %d\nPeaks: %d\n", len(maps.Keys(p.trailHeads)), len(p.peaks))
 	rowHeader := "%2d:"
@@ -71,7 +73,7 @@ func (p Day10) printMap() {
 					mark = "*"
 				}
 			}
-			fmt.Printf("%s%d", mark, out)
+			fmt.Printf("%s%d", mark, out.elevation)
 			if _, moreColumns = p.island[position+1i]; moreColumns {
 				position += 1i
 			}
@@ -144,7 +146,7 @@ func findAllPaths(world map[complex128]*tile, start *tile) (rank int) {
 // commented for speed
 func (p Day10) PartA(lines []string) any {
 	p.parseInput(lines[:len(lines)-1])
-	for trailHead, _ := range p.trailHeads {
+	for trailHead := range p.trailHeads {
 		for _, peak := range p.peaks {
 			if _, _, found := as.Path(p.island[trailHead], p.island[peak]); found {
 				p.trailHeads[trailHead]++
@@ -161,7 +163,7 @@ func (p Day10) PartA(lines []string) any {
 func (p Day10) PartB(lines []string) any {
 	p.parseInput(lines[:len(lines)-1])
 	sum := 0
-	for trailHead, _ := range p.trailHeads {
+	for trailHead := range p.trailHeads {
 		sum += findAllPaths(p.island, p.island[trailHead])
 	}
 	return sum
