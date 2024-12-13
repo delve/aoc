@@ -19,13 +19,14 @@ type game struct {
 	prize         complex128
 	solutions     [][2]int
 	cheapestSolve int
+	itrCount      float64
 }
 
 func (p *Day13) parseInput(lines []string) {
 	buttonRex := regexp.MustCompile(`Button .: X\+([0-9]*), Y\+([0-9]*)`)
 	prizeRex := regexp.MustCompile(`Prize: X=([0-9]*), Y=([0-9]*)`)
 	for i := 0; i < len(lines); i++ {
-		machine := game{aCost: 3, bCost: 1, cheapestSolve: math.MaxInt64, solutions: [][2]int{}}
+		machine := game{aCost: 3, bCost: 1, cheapestSolve: math.MaxInt64, itrCount: 0,solutions: [][2]int{}}
 		match := buttonRex.FindStringSubmatch(lines[i])
 		machine.buttonA = complex(float64(common.Atoi(match[1])), float64(common.Atoi(match[2])))
 		i++
@@ -53,6 +54,10 @@ func (p *Day13) playGames() (tokenCost int) {
 }
 
 func (g *game) solve(aCount, bCount int, curLoc complex128) {
+	g.itrCount++
+	if math.Mod(g.itrCount, 1000) == 0 {
+		fmt.Printf("Iteration %0f, aCount %d | bCount %d | location %v | target %v\n", g.itrCount, aCount, bCount, curLoc, g.prize)
+	}
 	if real(curLoc) > real(g.prize) || imag(curLoc) > imag(g.prize) {
 		return // too far, just back up
 	}
