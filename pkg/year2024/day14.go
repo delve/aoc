@@ -115,6 +115,10 @@ func (r *robot) walk(seconds float64, bounds [2]int) {
 	r.position = complex(newRow, newColumn)
 }
 
+func (r robot) draw(win *opengl.Window) {
+	r.sprite.img.Draw(win, *r.sprite.matrix)
+}
+
 func (p Day14) getRobotMap() map[complex128]int {
 	area := map[complex128]int{}
 	for _, bot := range p.robots {
@@ -189,11 +193,11 @@ func (p Day14) PartB(lines []string) any {
 	}
 	win.Clear(colornames.Darkslategray)
 
-	sprite.Draw(win, pixel.IM)
 	// last := time.Now()
 	for !win.Closed() {
 		// dt := time.Since(last).Seconds()
 		// last = time.Now()
+		p.robots[0].draw(win)
 		win.Update()
 	}
 
