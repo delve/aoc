@@ -16,10 +16,9 @@ import (
 )
 
 type Day14 struct {
-	robots      []*robot
-	bounds      [2]int // maxRow, maxColumn
-	spriteSize  pixel.Vec
-	windowScale float64
+	robots    []*robot
+	bounds    [2]int // maxRow, maxColumn
+	gridScale pixel.Vec
 }
 
 type robot struct {
@@ -43,16 +42,18 @@ func (p *Day14) parseInput(lines []string) {
 	if err != nil {
 		panic(err)
 	}
-	p.spriteSize = pic.Bounds().Max
+	spriteSize := pic.Bounds().Max
 
 	stateRex := regexp.MustCompile(`p=(\d+),(\d+) v=(-?\d+),(-?\d+)`)
 	id := 0
+	p.gridScale = pixel.V(float64(500/p.bounds[0]), float64(500/p.bounds[1]))
+	spriteScale := pixel.V(p.gridScale.X/spriteSize.X, p.gridScale.Y/spriteSize.Y)
+
 	for _, rState := range lines[1:] {
-		p.windowScale = 0.5
 		state := stateRex.FindSubmatch([]byte(rState))
 		position := complex(common.MustFloat(string(state[2])), common.MustFloat(string(state[1])))
 		velocity := complex(common.MustFloat(string(state[4])), common.MustFloat(string(state[3])))
-		mat := pixel.IM.Scaled(pixel.ZV, p.windowScale).Moved(pixel.V(real(position), imag(position)))
+		mat := pixel.IM.ScaledXY(pixel.ZV, spriteScale).Moved(pixel.V(float64(imag(position))*p.gridScale.X, (float64(p.bounds[1])-real(position))*p.gridScale.Y))
 		sprite := botSprite{img: pixel.NewSprite(pic, pic.Bounds()), matrix: &mat}
 		p.robots = append(p.robots, &robot{id: id, position: position, velocity: velocity, sprite: sprite})
 		id++
@@ -113,6 +114,7 @@ func (r *robot) walk(seconds float64, bounds [2]int) {
 	}
 
 	r.position = complex(newRow, newColumn)
+	// r.sprite.matrix.Moved(pixel.V())
 }
 
 func (r robot) draw(win *opengl.Window) {
@@ -183,9 +185,10 @@ func (p Day14) PartB(lines []string) any {
 	// println(p.getAreaMap())
 
 	cfg := opengl.WindowConfig{
-		Title:  "Pixel Rocks!",
-		Bounds: pixel.R(0, 0, float64(p.bounds[0])*p.spriteSize.X*p.windowScale, float64(p.bounds[1])*p.spriteSize.Y*p.windowScale),
-		VSync:  true,
+		Title:  "Where's the toilet!",
+		Bounds: pixel.R(0, 0, 500, 500),
+		// Bounds: pixel.R(0, 0, float64(p.bounds[0])*p.spriteSize.X*p.windowScale.X, float64(p.bounds[1])*p.spriteSize.Y*p.windowScale.Y),
+		VSync: true,
 	}
 	win, err := opengl.NewWindow(cfg)
 	if err != nil {
@@ -197,7 +200,9 @@ func (p Day14) PartB(lines []string) any {
 	for !win.Closed() {
 		// dt := time.Since(last).Seconds()
 		// last = time.Now()
-		p.robots[0].draw(win)
+		for _, bot := range p.robots {
+			bot.draw(win)
+		}
 		win.Update()
 	}
 
