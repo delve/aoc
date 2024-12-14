@@ -29,9 +29,9 @@ func MustFloat(s string) float64 {
 	return ret
 }
 
-// MustFloat trims space from its input string and converts it to float64. or dies trying.
+// MustParseInt trims space from its input string and converts it to an int of specified base. or dies trying.
 func MustParseInt(s string, base int) int64 {
-	ret, err := strconv.ParseInt(s, base, 64)
+	ret, err := strconv.ParseInt(strings.TrimSpace(s), base, 64)
 	Check(err)
 	return ret
 }
