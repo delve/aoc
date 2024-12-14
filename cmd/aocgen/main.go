@@ -16,6 +16,7 @@ import (
 	"aocgen/pkg/gen"
 	"aocgen/pkg/years"
 
+	"github.com/gopxl/pixel/v2/backends/opengl"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
@@ -238,6 +239,10 @@ func runDay(year, day int, sample bool) {
 	aoc.Run(year, day, aoc.NewPuzzle(year, day), aoc.Input(year, day, sample))
 }
 
-func main() {
+func run() {
 	Execute()
+}
+
+func main() {
+	opengl.Run(run)
 }
