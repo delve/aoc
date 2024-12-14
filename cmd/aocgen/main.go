@@ -167,7 +167,7 @@ var runCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(file) > 0 {
 			logrus.Infof("debugging file: %s", file)
-			parser := regexp.MustCompile(".*/year([0-9]{4})/day([0-9]{2})")
+			parser := regexp.MustCompile(`.*[\\/]+year([0-9]{4})[\\/]+day([0-9]{2})`)
 			parsedDay := parser.FindAllStringSubmatch(file, -1)
 			if parsedDay == nil {
 				logrus.Fatalf("could not parse %s for year and day", file)
